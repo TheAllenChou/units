@@ -2,8 +2,28 @@
 
 Units is a library that provides convenient macros to define custom type-safe unit types with custom literals. Basic unit types can further combined to define derived unit types using mathematical relationships, including division and multiplication (more relationships are WIP).
 
+Enforcing type-safe unit types could help catch logic erros, such as assigning a product of acceleration (meters per second squared) and duration (seconds) to distance (meters).
+
+```C++
+// no compiler error
+const float acceleration = 1.0f;
+const float duration = 2.0f;
+const float distance = acceleration * duration; // no compiler error
+
+// ERROR (units don't match)
+const Acceleration acceleration = 1.0_m_ss;
+const Time duration = 2.0_s;
+const Length distance = acceleration * duration;
+
+// OK (units match)
+const Acceleration acceleration = 1.0_m_ss;
+const Time duration = 2.0_s;
+const Velocity velocity = acceleration * duration;
+const Length distance = velocity * duration;
+```
+
 This repository contains two projects:  
-  * units: Core library (two header files).
+  * units: Core library (single header file).
   * unit-test: Library unit tests.
 
 The core library is platform-agnostic, whereas the unit tests are targeted for Windows.
@@ -16,21 +36,15 @@ To build the unit tests on Windows, you need:
 
 ## Code Examples
 ```C++
-
-// enable macros
 #include "units/defines.h"
 
+// make units
 MAKE_BASIC_UNIT(Meter, float, _m);
 MAKE_BASIC_UNIT(Second, float, _s);
 MAKE_DERIVED_UNIT_DIV(MeterPerSecond, float, _m_s, Meter, Second);
-
 MAKE_BASIC_UNIT(Ampere, float, _a);
 MAKE_BASIC_UNIT(Volt, float, _v);
 MAKE_DERIVED_UNIT_MUL(Watt, float, _w, Ampere, Volt);
-
-// disable macros
-#include "units/undefs.h"
-
 
 // conversion from primitive types
 const Meter fromFloat = Meter::From(1.0f);
