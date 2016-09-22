@@ -46,14 +46,13 @@ MAKE_BASIC_UNIT(Ampere, float, _a);
 MAKE_BASIC_UNIT(Volt, float, _v);
 MAKE_DERIVED_UNIT_MUL(Watt, float, _w, Ampere, Volt);
 
-// conversion from primitive types
-const Meter fromFloat = Meter::From(1.0f);
-const Meter fromInt = Meter::From(1);
-const float fromMeter = fromFloat.To<float>();
-
 // literals
 const Meter meterLiteral = 4.0_m;
 const Second secondLiteral = 2.0_s;
+
+// conversion to primitive types
+const Meter safeType = 1.0_m;
+const float rawType = safeType.To<float>();
 
 // arithmetics
 const Meter add = 1.0_m + 2.0_m;
