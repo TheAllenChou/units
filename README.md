@@ -65,6 +65,7 @@ const Volt derivedVoltage = power / current;
 
 // type safety
 auto badStuff = 1.0_m + 2.0_s; // ERROR
+auto goodStuff = 1.0_w + 2.0_a * 3.0_v; // OK
 ```
 
 ----
