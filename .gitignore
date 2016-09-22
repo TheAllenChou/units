@@ -1,0 +1,7 @@
+# Build Folders
+bin/
+obj/
+sln/
+
+# Sublime Files
+*.sublime-workspace
