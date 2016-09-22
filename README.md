@@ -8,7 +8,7 @@ Enforcing type-safe unit types could help catch logical erros, such as assigning
 // no compiler error
 const float acceleration = 1.0f;
 const float duration = 2.0f;
-const float distance = acceleration * duration; // no compiler error
+const float distance = acceleration * duration;
 
 // ERROR (units don't match)
 const Acceleration acceleration = 1.0_m_ss;
