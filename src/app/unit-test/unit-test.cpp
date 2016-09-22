@@ -8,11 +8,11 @@
 
 #include "unit-test.h"
 
+#include "units/units.h"
+
+
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION(UnitTest);
-
-
-#include "units/defines.h"
 
 MAKE_BASIC_UNIT(Meter, float, _m);
 MAKE_BASIC_UNIT(Second, float, _s);
@@ -21,8 +21,6 @@ MAKE_DERIVED_UNIT_DIV(MeterPerSecond, float, _m_s, Meter, Second);
 MAKE_BASIC_UNIT(Ampere, float, _a);
 MAKE_BASIC_UNIT(Volt, float, _v);
 MAKE_DERIVED_UNIT_MUL(Watt, float, _w, Ampere, Volt);
-
-#include "units/undefs.h"
 
 
 void UnitTest::TestBasicUnits()
@@ -83,6 +81,4 @@ void UnitTest::TestDerivedUnits()
   CPPUNIT_ASSERT(power0 == power1);
   CPPUNIT_ASSERT(current == derivedCurrent);
   CPPUNIT_ASSERT(voltage == derivedVoltage);
-
-  1_a + 3_v;
 }
