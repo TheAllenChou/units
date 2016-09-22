@@ -1,6 +1,6 @@
 ## Units
 
-Units is a library that provides convenient macros to define custom type-safe unit types with custom literals. Basica unit types can be defined and used to define derived types using mathematical relationships, including division and multiplication (more relationships are WIP).
+Units is a library that provides convenient macros to define custom type-safe unit types with custom literals. Basic unit types can be defined and used to define derived types using mathematical relationships, including division and multiplication (more relationships are WIP).
 
 This repository contains two projects:  
   * units: Core library (two header files).
