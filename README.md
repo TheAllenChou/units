@@ -1,6 +1,6 @@
 ## Units
 
-Units is a library that provides convenient macros to define custom type-safe unit types with custom literals. Basic unit types can further combined to define derived unit types using mathematical relationships, including division and multiplication (more relationships are WIP).
+Units is a library that provides convenient macros to define custom type-safe unit types with custom literals. Basic unit types can be further combined to define derived unit types using mathematical relationships, including division and multiplication (more relationships are WIP).
 
 Enforcing type-safe unit types could help catch logical erros, such as assigning a product of acceleration (meters per second squared) and duration (seconds) to a variable representing distance (meters).
 
