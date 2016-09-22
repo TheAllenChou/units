@@ -52,7 +52,8 @@ const Second secondLiteral = 2.0_s;
 
 // conversion to primitive types
 const Meter safeType = 1.0_m;
-const float rawType = safeType.To<float>();
+const float rawType = safeType.GetRaw();
+const int castedType = safeType.To<int>();
 
 // arithmetics
 const Meter add = 1.0_m + 2.0_m;
