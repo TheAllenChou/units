@@ -6,8 +6,8 @@
 */
 /******************************************************************************/
 
-#ifndef UNITS_DEFINES_H
-#define UNITS_DEFINES_H
+#ifndef UNITS_H
+#define UNITS_H
 
 
 #include <limits>
