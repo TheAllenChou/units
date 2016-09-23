@@ -1,8 +1,8 @@
 ## Units
 
-Units is a library that provides convenient macros to define custom type-safe unit types with custom literals. Basic unit types can be further combined to define derived unit types using mathematical relationships, including division and multiplication (more relationships are WIP).
+Units is a library that provides convenient macros to define custom unit types with custom literals that enforce dimensional correctness. Basic unit types can be further combined to define derived unit types using mathematical relationships, including division and multiplication (more relationships are WIP).
 
-Enforcing type-safe unit types could help catch logical erros, such as assigning a product of acceleration (meters per second squared) and duration (seconds) to a variable representing distance (meters).
+Enforcing dimensional correctness could help catch logical erros, such as assigning a product of acceleration (lengths per time squared) and duration (times) to a variable representing distance (lengths).
 
 ```C++
 // no compiler error
@@ -39,45 +39,45 @@ To build the unit tests on Windows, you need:
 #include "units/defines.h"
 
 // make units
-MAKE_BASIC_UNIT(Meter, float, _m);
-MAKE_BASIC_UNIT(Second, float, _s);
-MAKE_DERIVED_UNIT_DIV(MeterPerSecond, float, _m_s, Meter, Second);
-MAKE_BASIC_UNIT(Ampere, float, _a);
-MAKE_BASIC_UNIT(Volt, float, _v);
-MAKE_DERIVED_UNIT_MUL(Watt, float, _w, Ampere, Volt);
+MAKE_BASIC_UNIT(Length, float, _m);                         // meter (m)
+MAKE_BASIC_UNIT(Time, float, _s);                           // time (s)
+MAKE_DERIVED_UNIT_DIV(Velocity, float, _m_s, Length, Time); // meters per time (m/s)
+MAKE_BASIC_UNIT(Current, float, _a);                        // ampere (a)
+MAKE_BASIC_UNIT(volt, float, _v);                           // volt (a)
+MAKE_DERIVED_UNIT_MUL(Power, float, _w, Current, volt);     // watt (w)
 
 // literals
-const Meter meterLiteral = 4.0_m;
-const Second secondLiteral = 2.0_s;
+const Length lengthLiteral = 4.0_m;
+const Time timeLiteral = 2.0_s;
 
 // conversion to primitive types
-const Meter safeType = 1.0_m;
+const Length safeType = 1.0_m;
 const float rawType = safeType.GetRaw();
 const int castedType = safeType.To<int>();
 
 // arithmetics
-const Meter add = 1.0_m + 2.0_m;
-const Meter sub = 1.0_m - 2.0_m;
-const Meter neg = -add;
+const Length add = 1.0_m + 2.0_m;
+const Length sub = 1.0_m - 2.0_m;
+const Length neg = -add;
 
 // scalar operations
-const Meter mul = 2.0f * 1.0_m; // 2 meters
-const Meter div = 1.0_m / 2.0f; // 0.5 meters
+const Length mul = 2.0f * 1.0_m; // 2.0 meters
+const Length div = 6.0_m / 2.0f; // 3.0 meters
 
 // derived units (divisions)
-const Meter distance = 3.0_m;
-const Second time = 1.5_s;
-const MeterPerSecond speed = distance / time; // 2.0 meters per second
-const Meter derivedDistance = speed * time;
+const Length length = 3.0_m;
+const Time time = 1.5_s;
+const Velocity speed = length / time; // 2.0 meters per second
+const Length derivedLength = speed * time;
 
-// derived units (multiplicatoins)
-const Ampere current = 3.0_a;
-const Volt voltage = 2.0_v;
-const Watt power = current * voltage; // 6.0 watts
-const Ampere derivedCurrent = power / voltage;
-const Volt derivedVoltage = power / current;
+// derived units (multiplications)
+const Current current = 3.0_a;
+const volt voltage = 2.0_v;
+const Power power = current * voltage; // 6.0 watts
+const Current derivedCurrent = power / voltage;
+const volt derivedvoltage = power / current;
 
-// type safety
+// dimensional correctness
 auto badStuff = 1.0_m + 2.0_s; // ERROR
 auto goodStuff = 1.0_w + 2.0_a * 3.0_v; // OK
 ```
