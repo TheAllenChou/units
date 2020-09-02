@@ -40,8 +40,8 @@ To build the unit tests on Windows, you need:
 
 // make units
 MAKE_BASIC_UNIT(Length, float, _m);                         // meter (m)
-MAKE_BASIC_UNIT(Time, float, _s);                           // time (s)
-MAKE_DERIVED_UNIT_DIV(Velocity, float, _m_s, Length, Time); // meters per time (m/s)
+MAKE_BASIC_UNIT(Time, float, _s);                           // second (s)
+MAKE_DERIVED_UNIT_DIV(Velocity, float, _m_s, Length, Time); // meters per second (m/s)
 MAKE_BASIC_UNIT(Current, float, _a);                        // ampere (a)
 MAKE_BASIC_UNIT(volt, float, _v);                           // volt (a)
 MAKE_DERIVED_UNIT_MUL(Power, float, _w, Current, volt);     // watt (w)
