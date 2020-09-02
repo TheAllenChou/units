@@ -39,12 +39,12 @@ To build the unit tests on Windows, you need:
 #include "units/defines.h"
 
 // make units
-MAKE_BASIC_UNIT(Length, float, _m);                         // meter (m)
-MAKE_BASIC_UNIT(Time, float, _s);                           // second (s)
-MAKE_DERIVED_UNIT_DIV(Velocity, float, _m_s, Length, Time); // meters per second (m/s)
-MAKE_BASIC_UNIT(Current, float, _a);                        // ampere (a)
-MAKE_BASIC_UNIT(volt, float, _v);                           // volt (a)
-MAKE_DERIVED_UNIT_MUL(Power, float, _w, Current, volt);     // watt (w)
+MAKE_BASIC_UNIT(Length, float, _m);                         // length - meter (m)
+MAKE_BASIC_UNIT(Time, float, _s);                           // time - second (s)
+MAKE_DERIVED_UNIT_DIV(Velocity, float, _m_s, Length, Time); // velocity - meters per second (m/s)
+MAKE_BASIC_UNIT(Current, float, _a);                        // current - Ampere (a)
+MAKE_BASIC_UNIT(Voltage, float, _v);                        // voltage - Volt (v)
+MAKE_DERIVED_UNIT_MUL(Power, float, _w, Current, Volt);     // power - Watt (w)
 
 // literals
 const Length lengthLiteral = 4.0_m;
@@ -72,10 +72,10 @@ const Length derivedLength = speed * time;
 
 // derived units (multiplications)
 const Current current = 3.0_a;
-const volt voltage = 2.0_v;
+const Voltage voltage = 2.0_v;
 const Power power = current * voltage; // 6.0 watts
 const Current derivedCurrent = power / voltage;
-const volt derivedvoltage = power / current;
+const Voltage derivedVoltage = power / current;
 
 // dimensional correctness
 auto badStuff = 1.0_m + 2.0_s; // ERROR
