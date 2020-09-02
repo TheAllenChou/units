@@ -1,6 +1,6 @@
 ## Units
 
-Units is an experimental library that provides macros to define custom unit types with custom literals that enforce dimensional correctness. Basic unit types can be further combined to define derived unit types using mathematical relationships, including division and multiplication (more relationships are WIP).
+Units is an experimental library that provides macros to define custom unit types with custom literals that enforce dimensional correctness. Basic unit types can be further combined to define derived unit types using mathematical relationships, including division and multiplication.
 
 Enforcing dimensional correctness could help catch logical erros, such as assigning a product of acceleration (lengths per time squared) and duration (times) to a variable representing distance (lengths).
 
