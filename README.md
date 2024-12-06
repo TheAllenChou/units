@@ -13,7 +13,7 @@ const float distance = acceleration * duration;
 // ERROR (units don't match)
 const Acceleration acceleration = 1.0_m_ss;
 const Time duration = 2.0_s;
-const Length distance = acceleration * duration;
+const Length distance = acceleration * duration; // assigning velocity (m/s) to length (m)
 
 // OK (units match)
 const Acceleration acceleration = 1.0_m_ss;
