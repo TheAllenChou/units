@@ -5,21 +5,18 @@ Units is an experimental library that provides macros to define custom unit type
 Enforcing dimensional correctness could help catch logical erros, such as assigning a product of acceleration (lengths per time squared) and duration (times) to a variable representing distance (lengths).
 
 ```C++
-// no compiler error
 const float acceleration = 1.0f;
 const float duration = 2.0f;
-const float distance = acceleration * duration;
+const float distance = acceleration * duration;     // [OOPS!] no compiler error
 
-// ERROR (units don't match)
 const Acceleration acceleration = 1.0_m_ss;
 const Time duration = 2.0_s;
-const Length distance = acceleration * duration; // assigning velocity (m/s) to length (m)
+const Length distance = acceleration * duration;    // [ERROR!] units don't match, trying to assign velocity (m/s) to length (m)
 
-// OK (units match)
 const Acceleration acceleration = 1.0_m_ss;
 const Time duration = 2.0_s;
 const Velocity velocity = acceleration * duration;
-const Length distance = velocity * duration;
+const Length distance = velocity * duration;        // [OK!] units match!
 ```
 
 This repository contains two projects:  
