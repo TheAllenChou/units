@@ -41,7 +41,7 @@ MAKE_BASIC_UNIT(Time, float, _s);                           // time - second (s)
 MAKE_DERIVED_UNIT_DIV(Velocity, float, _m_s, Length, Time); // velocity - meters per second (m/s)
 MAKE_BASIC_UNIT(Current, float, _a);                        // current - Ampere (a)
 MAKE_BASIC_UNIT(Voltage, float, _v);                        // voltage - Volt (v)
-MAKE_DERIVED_UNIT_MUL(Power, float, _w, Current, Volt);     // power - Watt (w)
+MAKE_DERIVED_UNIT_MUL(Power, float, _w, Current, Voltage);  // power - Watt (w)
 
 // literals
 const Length lengthLiteral = 4.0_m;
